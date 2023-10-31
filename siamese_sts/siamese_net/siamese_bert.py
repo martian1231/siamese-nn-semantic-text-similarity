@@ -18,11 +18,14 @@ from siamese_sts.utils.utils import similarity_score
 from transformers.models.bert.modeling_bert import (
     BertPreTrainedModel,
     BERT_INPUTS_DOCSTRING,
-    _TOKENIZER_FOR_DOC,
     _CHECKPOINT_FOR_DOC,
     _CONFIG_FOR_DOC,
     BertModel,
 )
+
+print(_CHECKPOINT_FOR_DOC, _CONFIG_FOR_DOC)
+
+_TOKENIZER_FOR_DOC = "BertTokenizer"
 
 from transformers.file_utils import (
     add_code_sample_docstrings,
@@ -46,7 +49,7 @@ class BertForSequenceClassification(BertPreTrainedModel):
         BERT_INPUTS_DOCSTRING.format("batch_size, sequence_length")
     )
     @add_code_sample_docstrings(
-        tokenizer_class=_TOKENIZER_FOR_DOC,
+        processor_class=_TOKENIZER_FOR_DOC,
         checkpoint=_CHECKPOINT_FOR_DOC,
         output_type=SequenceClassifierOutput,
         config_class=_CONFIG_FOR_DOC,
