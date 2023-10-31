@@ -71,18 +71,18 @@ class STSData:
         ## init tokenizer
         self.en_tokenizer = get_tokenizer("spacy", language="en_core_web_sm")
 
-        TEXT = torchtext.legacy.data.Field(tokenize=self.en_tokenizer, lower=True)
-        LABEL = torchtext.legacy.data.Field(sequential=False, use_vocab=False)
+        TEXT = torchtext.data.Field(tokenize=self.en_tokenizer, lower=True)
+        LABEL = torchtext.data.Field(sequential=False, use_vocab=False)
         FIELDS = [("text", TEXT), ("label", LABEL)]
         examples = list(
             map(
-                lambda x: torchtext.legacy.data.Example.fromlist(
+                lambda x: torchtext.data.Example.fromlist(
                     list(x), fields=FIELDS
                 ),
                 self.train_set[["concat_text", self.columns_mapping["label"]]].values,
             )
         )
-        dt = torchtext.legacy.data.Dataset(examples, fields=FIELDS)
+        dt = torchtext.data.Dataset(examples, fields=FIELDS)
 
         TEXT.build_vocab(dt, vectors="fasttext.simple.300d")
         # get the vocab instance
