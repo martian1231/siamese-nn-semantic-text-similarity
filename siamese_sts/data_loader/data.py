@@ -181,7 +181,7 @@ class STSData:
         Converts raw data sequences into vectorized sequences as tensors
         """
 
-        dataset = {"train": load_dataset(self.dataset_name, split="train")}
+        dataset = {"train": load_dataset(self.dataset_name, split="train"), "val": load_dataset(self.dataset_name, split="val")}
         features_dict = {}
 
         ## get the text sequence from dataframe
@@ -206,7 +206,7 @@ class STSData:
                 len(features_dict[phase]),
             )
 
-        return features_dict["train"]
+        return features_dict
 
     def get_data_loader(self, batch_size=8):
         sts_dataloaders = {}
