@@ -181,7 +181,7 @@ class STSData:
         Converts raw data sequences into vectorized sequences as tensors
         """
 
-        dataset = {"train": load_dataset(self.dataset_name, split="train"), "val": load_dataset(self.dataset_name, split="val")}
+        dataset = {"train": load_dataset(self.dataset_name, split="train"), "validation": load_dataset(self.dataset_name, split="validation")}
         features_dict = {}
 
         ## get the text sequence from dataframe
